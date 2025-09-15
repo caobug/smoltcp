@@ -77,10 +77,7 @@ impl ops::Sub for SeqNumber {
 
     fn sub(self, rhs: SeqNumber) -> usize {
         let result = self.0.wrapping_sub(rhs.0);
-        if result < 0 {
-            panic!("attempt to subtract sequence numbers with underflow")
-        }
-        result as usize
+        result.max(0) as usize
     }
 }
 
